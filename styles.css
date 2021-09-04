@@ -273,6 +273,12 @@ section {
 }
 .testimonials {
   display: inline-flex;
+  transform: translateX(0);
+  transition: transform 0.3s;
+  scrollbar-width: none;
+  transform: translateX(0);
+  will-change: transform;
+  transition: transform 0.3s ease-out;
 }
 .grabbing {
   cursor: grabbing;
