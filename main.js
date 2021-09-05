@@ -13,12 +13,11 @@ let isDragging = false,
   animationID,
   currentIndex = 0;
 
-const mediaQuery = window.matchMedia("(max-width: 568px)");
+let mediaQuery = window.matchMedia("(max-width: 568px)");
 
 mediaQuery.matches &&
   slides.forEach((slide, index) => {
     // touch events
-    console.log("llik what");
     slide.addEventListener("touchstart", touchStart(index));
     slide.addEventListener("touchend", touchEnd);
     slide.addEventListener("touchmove", touchMove);
@@ -116,4 +115,28 @@ navBtn.addEventListener("click", function (e) {
   e.preventDefault();
   navWrapper.classList.toggle("active");
   document.querySelector("body").classList.toggle("active-nav");
+});
+
+/* validate email newsletter */
+
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+const form = document.querySelector("#newsletter-form");
+const formInput = form.querySelector("input");
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  if (formInput.value.trim().length == 0) {
+    form.classList.add("error");
+  } else {
+    if (validateEmail(formInput.value.trim())) {
+      form.classList.remove("error");
+      form.classList.add("valid");
+      formInput.value = "";
+      setTimeout(() => form.classList.remove("valid"), 5000);
+    } else {
+      form.classList.add("error");
+    }
+  }
 });
