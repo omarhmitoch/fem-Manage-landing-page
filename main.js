@@ -14,6 +14,14 @@ let isDragging = false,
   currentIndex = 0;
 
 let mediaQuery = window.matchMedia("(max-width: 568px)");
+let mediaQueryNavCheck = window.matchMedia("(min-width: 768px)");
+
+window.onresize = function () {
+  if (mediaQueryNavCheck.matches) {
+    navWrapper.classList.remove("active");
+    document.querySelector("body").classList.remove("active-nav");
+  }
+};
 
 mediaQuery.matches &&
   slides.forEach((slide, index) => {

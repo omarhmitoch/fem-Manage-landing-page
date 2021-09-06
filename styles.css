@@ -593,6 +593,9 @@ footer {
 }
 
 @media (min-width: 960px) {
+  .wrapper.active .overflow-nav-shadow {
+    display: none;
+  }
   .nav-container .menu {
     display: none;
   }
